@@ -1,0 +1,30 @@
+{
+  "roles": {
+    "lubricant":          ["lubricant", "lubrication", "lubricating"],
+    "glidant":            ["glidant", "flow promoter", "anti-caking", "flowability"],
+    "binder":             ["binder", "binding agent", "granulating agent", "adhesive"],
+    "disintegrant":       ["disintegrant", "disintegrating agent", "super-disintegrant"],
+    "diluent":            ["diluent", "filler", "bulking agent", "tablet filler"],
+    "surfactant":         ["surfactant", "wetting agent", "solubilizing agent"],
+    "emulsifier":         ["emulsifier", "emulsifying agent"],
+    "stabilizer":         ["stabilizer", "antioxidant", "chelating agent", "buffer"],
+    "preservative":       ["preservative", "antimicrobial", "bacteriostat", "fungistat"],
+    "coating_agent":      ["coating", "film-former", "film former", "glazing agent", "enteric coat"],
+    "viscosity_modifier": ["thickening agent", "thickener", "gelling agent", "suspending agent"],
+    "sweetener":          ["sweetener", "taste-masking", "flavoring agent"],
+    "tonicity_agent":     ["tonicity", "isotonicity", "osmotic agent"]
+  },
+
+  "dosage_forms": {
+    "tablet":       ["tablet", "caplet", "odt", "chewable tablet"],
+    "capsule":      ["capsule", "hard gel", "soft gel"],
+    "solution":     ["solution", "syrup", "elixir", "oral drops"],
+    "suspension":   ["suspension"],
+    "injection":    ["injection", "injectable", "intravenous", "intramuscular", "subcutaneous"],
+    "ophthalmic":   ["ophthalmic", "eye drop", "eye ointment"],
+    "cream":        ["cream", "lotion", "ointment", "paste"],
+    "transdermal":  ["transdermal", "patch"],
+    "suppository":  ["suppository", "pessary", "rectal"],
+    "inhalation":   ["inhalation", "inhaler", "aerosol", "dpi", "nasal spray"]
+  }
+}

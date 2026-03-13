@@ -1,0 +1,12 @@
+# Layer 1 — no dependencies (standard library only)
+
+# Layer 2 — core
+langchain-core>=0.2.0
+python-dotenv>=1.0.0
+
+# Layer 2 — install ONE of these depending on your provider:
+langchain-huggingface   # HuggingFace (free)
+langchain-groq          # Groq        (free, fastest)
+# langchain-ollama        # Ollama      (local, no API key)
+langchain-openai        # OpenAI
+# langchain-anthropic     # Anthropic

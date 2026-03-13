@@ -1,0 +1,25 @@
+{
+  "_comment": "Maps partial section name fragments to schema fields. Order matters — first match wins.",
+
+  "section_to_field": {
+    "Nonproprietary Names":   "excipient_name",
+    "Synonyms":               "synonyms",
+    "Functional Category":    "roles",
+    "Description":            "description",
+    "Applications":           "roles_and_dosage_forms",
+    "Incompatibilities":      "incompatibilities",
+    "Stability":              "stability_block",
+    "Safety":                 "toxicity_notes",
+    "Regulatory":             "regulatory_status",
+    "Typical Properties":     "typical_properties"
+  },
+
+  "llm_fields": [
+    "dosage_forms",
+    "processing_notes",
+    "ph_sensitivity",
+    "compatibilities"
+  ],
+
+  "stability_block_comment": "stability section produces multiple fields: stability_notes, storage_conditions, temperature_sensitivity"
+}

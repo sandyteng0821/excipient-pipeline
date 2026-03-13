@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+
+# Environment
+.env
+
+# Data (raw + processed — store separately, not in repo)
+data/raw/
+data/clean/
+
+# Logs
+*.log
+
+# Benchmark + test outputs
+benchmark_*.json
+benchmark_*.csv
+Acacia-full*.json
+Acacia-full.json
+
+# Audit outputs (generated, not source)
+raw_status*.tsv
+section_coverage.png
+
+# Editor
+.vscode/
+.idea/
+*.swpdata/clean-layer1-only/
+data/clean-layer1-only/

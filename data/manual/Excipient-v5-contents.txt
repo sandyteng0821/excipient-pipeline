@@ -1,0 +1,319 @@
+Category	Item	Page
+Front Matter	International Steering Committee	ix
+Front Matter	Editorial Staff	ix
+Front Matter	Contributors	x
+Front Matter	About the Editors	xii
+Front Matter	New Monographs	xiii
+Front Matter	Related Substances	xiv
+Front Matter	Preface	xvi
+Front Matter	Arrangement	xvii
+Front Matter	Acknowledgments	xix
+Front Matter	Notice to Readers	xix
+Front Matter	Bibliography	xx
+Front Matter	Abbreviations	xx
+Front Matter	Units of Measurement	xxii
+Monograph	Acacia	1
+Monograph	Acesulfame Potassium	4
+Monograph	Acetic Acid Glacial	6
+Monograph	Acetone	8
+Monograph	Acetyltributyl Citrate	10
+Monograph	Acetyltriethyl Citrate	12
+Monograph	Agar	14
+Monograph	Albumin	16
+Monograph	Alcohol	18
+Monograph	Alginic Acid	21
+Monograph	Aliphatic Polyesters	24
+Monograph	Alitame	28
+Monograph	Almond Oil	30
+Monograph	Alpha Tocopherol	32
+Monograph	Aluminum Hydroxide Adjuvant	36
+Monograph	Aluminum Oxide	38
+Monograph	Aluminum Phosphate Adjuvant	40
+Monograph	Aluminum Stearate	42
+Monograph	Ammonia Solution	44
+Monograph	Ammonium Alginate	46
+Monograph	Ascorbic Acid	48
+Monograph	Ascorbyl Palmitate	51
+Monograph	Aspartame	53
+Monograph	Attapulgite	56
+Monograph	Bentonite	58
+Monograph	Benzalkonium Chloride	61
+Monograph	Benzethonium Chloride	64
+Monograph	Benzoic Acid	66
+Monograph	Benzyl Alcohol	69
+Monograph	Benzyl Benzoate	72
+Monograph	Boric Acid	74
+Monograph	Bronopol	76
+Monograph	Butylated Hydroxyanisole	79
+Monograph	Butylated Hydroxytoluene	81
+Monograph	Butylparaben	83
+Monograph	Calcium Alginate	86
+Monograph	Calcium Carbonate	89
+Monograph	Calcium Phosphate Dibasic Anhydrous	93
+Monograph	Calcium Phosphate Dibasic Dihydrate	96
+Monograph	Calcium Phosphate Tribasic	100
+Monograph	Calcium Stearate	102
+Monograph	Calcium Sulfate	105
+Monograph	Canola Oil	108
+Monograph	Carbomer	111
+Monograph	Carbon Dioxide	116
+Monograph	Carboxymethylcellulose Calcium	118
+Monograph	Carboxymethylcellulose Sodium	120
+Monograph	Carrageenan	124
+Monograph	Castor Oil	128
+Monograph	Castor Oil Hydrogenated	130
+Monograph	Cellulose Microcrystalline	132
+Monograph	Cellulose Powdered	136
+Monograph	Cellulose Silicified Microcrystalline	139
+Monograph	Cellulose Acetate	142
+Monograph	Cellulose Acetate Phthalate	145
+Monograph	Ceratonia	148
+Monograph	Cetostearyl Alcohol	150
+Monograph	Cetrimide	152
+Monograph	Cetyl Alcohol	155
+Monograph	Cetylpyridinium Chloride	157
+Monograph	Chitosan	159
+Monograph	Chlorhexidine	163
+Monograph	Chlorobutanol	168
+Monograph	Chlorocresol	171
+Monograph	Chlorodifluoroethane (HCFC)	174
+Monograph	Chlorofluorocarbons (CFC)	176
+Monograph	Chloroxylenol	180
+Monograph	Cholesterol	182
+Monograph	Citric Acid Monohydrate	185
+Monograph	Colloidal Silicon Dioxide	188
+Monograph	Coloring Agents	192
+Monograph	Copovidone	201
+Monograph	Corn Oil	204
+Monograph	Cottonseed Oil	206
+Monograph	Cresol	208
+Monograph	Croscarmellose Sodium	211
+Monograph	Crospovidone	214
+Monograph	Cyclodextrins	217
+Monograph	Cyclomethicone	222
+Monograph	Denatonium Benzoate	224
+Monograph	Dextrates	226
+Monograph	Dextrin	228
+Monograph	Dextrose	231
+Monograph	Dibutyl Phthalate	234
+Monograph	Dibutyl Sebacate	236
+Monograph	Diethanolamine	238
+Monograph	Diethyl Phthalate	240
+Monograph	Difluoroethane (HFC)	242
+Monograph	Dimethicone	244
+Monograph	Dimethyl Ether	246
+Monograph	Dimethyl Phthalate	248
+Monograph	Dimethyl Sulfoxide	250
+Monograph	Dimethylacetamide	253
+Monograph	Disodium Edetate	255
+Monograph	Docusate Sodium	257
+Monograph	Edetic Acid	260
+Monograph	Erythorbic Acid	264
+Monograph	Erythritol	266
+Monograph	Ethyl Acetate	268
+Monograph	Ethyl Lactate	270
+Monograph	Ethyl Maltol	272
+Monograph	Ethyl Oleate	274
+Monograph	Ethyl Vanillin	276
+Monograph	Ethylcellulose	278
+Monograph	Ethylene Glycol Palmitostearate	283
+Monograph	Ethylene Vinyl Acetate	285
+Monograph	Ethylparaben	287
+Monograph	Fructose	290
+Monograph	Fumaric Acid	293
+Monograph	Gelatin	295
+Monograph	Glucose Liquid	299
+Monograph	Glycerin	301
+Monograph	Glyceryl Behenate	304
+Monograph	Glyceryl Monooleate	306
+Monograph	Glyceryl Monostearate	308
+Monograph	Glyceryl Palmitostearate	311
+Monograph	Glycofurol	313
+Monograph	Guar Gum	315
+Monograph	Hectorite	318
+Monograph	Heptafluoropropane (HFC)	321
+Monograph	Hexetidine	323
+Monograph	Hydrocarbons (HC)	325
+Monograph	Hydrochloric Acid	328
+Monograph	Hydroxyethyl Cellulose	330
+Monograph	Hydroxyethylmethyl Cellulose	334
+Monograph	Hydroxypropyl Cellulose	336
+Monograph	Hydroxypropyl Cellulose Low-substituted	341
+Monograph	Hydroxypropyl Starch	344
+Monograph	Hypromellose	346
+Monograph	Hypromellose Acetate Succinate	350
+Monograph	Hypromellose Phthalate	354
+Monograph	Imidurea	359
+Monograph	Inulin	362
+Monograph	Iron Oxides	364
+Monograph	Isomalt	366
+Monograph	Isopropyl Alcohol	371
+Monograph	Isopropyl Myristate	374
+Monograph	Isopropyl Palmitate	376
+Monograph	Kaolin	378
+Monograph	Lactic Acid	381
+Monograph	Lactitol	383
+Monograph	Lactose Anhydrous	385
+Monograph	Lactose Monohydrate	389
+Monograph	Lactose Spray-Dried	396
+Monograph	Lanolin	399
+Monograph	Lanolin Alcohols	402
+Monograph	Lanolin Hydrous	404
+Monograph	Lauric Acid	406
+Monograph	Lecithin	409
+Monograph	Leucine	412
+Monograph	Linoleic Acid	414
+Monograph	Macrogol 15 Hydroxystearate	416
+Monograph	Magnesium Aluminum Silicate	418
+Monograph	Magnesium Carbonate	422
+Monograph	Magnesium Oxide	426
+Monograph	Magnesium Silicate	428
+Monograph	Magnesium Stearate	430
+Monograph	Magnesium Trisilicate	434
+Monograph	Malic Acid	436
+Monograph	Maltitol	438
+Monograph	Maltitol Solution	440
+Monograph	Maltodextrin	442
+Monograph	Maltol	445
+Monograph	Maltose	447
+Monograph	Mannitol	449
+Monograph	Medium-chain Triglycerides	454
+Monograph	Meglumine	457
+Monograph	Menthol	459
+Monograph	Methylcellulose	462
+Monograph	Methylparaben	466
+Monograph	Mineral Oil	471
+Monograph	Mineral Oil Light	474
+Monograph	Mineral Oil and Lanolin Alcohols	476
+Monograph	Monoethanolamine	478
+Monograph	Monosodium Glutamate	480
+Monograph	Monothioglycerol	482
+Monograph	Myristic Acid	484
+Monograph	Neohesperidin Dihydrochalcone	486
+Monograph	Nitrogen	488
+Monograph	Nitrous Oxide	490
+Monograph	Octyldodecanol	492
+Monograph	Oleic Acid	494
+Monograph	Oleyl Alcohol	496
+Monograph	Olive Oil	498
+Monograph	Palmitic Acid	501
+Monograph	Paraffin	503
+Monograph	Peanut Oil	505
+Monograph	Pectin	507
+Monograph	Petrolatum	509
+Monograph	Petrolatum and Lanolin Alcohols	512
+Monograph	Phenol	514
+Monograph	Phenoxyethanol	517
+Monograph	Phenylethyl Alcohol	519
+Monograph	Phenylmercuric Acetate	521
+Monograph	Phenylmercuric Borate	524
+Monograph	Phenylmercuric Nitrate	526
+Monograph	Phosphoric Acid	530
+Monograph	Polacrilin Potassium	532
+Monograph	Poloxamer	535
+Monograph	Polycarbophil	539
+Monograph	Polydextrose	542
+Monograph	Polyethylene Glycol	545
+Monograph	Polyethylene Oxide	551
+Monograph	Polymethacrylates	553
+Monograph	Poly(methyl vinyl ether/maleic anhydride)	561
+Monograph	Polyoxyethylene Alkyl Ethers	564
+Monograph	Polyoxyethylene Castor Oil Derivatives	572
+Monograph	Polyoxyethylene Sorbitan Fatty Acid Esters	580
+Monograph	Polyoxyethylene Stearates	585
+Monograph	Polyvinyl Acetate Phthalate	589
+Monograph	Polyvinyl Alcohol	592
+Monograph	Potassium Alginate	594
+Monograph	Potassium Benzoate	596
+Monograph	Potassium Bicarbonate	598
+Monograph	Potassium Chloride	600
+Monograph	Potassium Citrate	603
+Monograph	Potassium Hydroxide	605
+Monograph	Potassium Metabisulfite	607
+Monograph	Potassium Sorbate	609
+Monograph	Povidone	611
+Monograph	Propionic Acid	617
+Monograph	Propyl Gallate	619
+Monograph	Propylene Carbonate	622
+Monograph	Propylene Glycol	624
+Monograph	Propylene Glycol Alginate	627
+Monograph	Propylparaben	629
+Monograph	2-Pyrrolidone	633
+Monograph	Raffinose	635
+Monograph	Saccharin	638
+Monograph	Saccharin Sodium	641
+Monograph	Saponite	644
+Monograph	Sesame Oil	646
+Monograph	Shellac	649
+Monograph	Simethicone	652
+Monograph	Sodium Acetate	654
+Monograph	Sodium Alginate	656
+Monograph	Sodium Ascorbate	659
+Monograph	Sodium Benzoate	662
+Monograph	Sodium Bicarbonate	665
+Monograph	Sodium Borate	669
+Monograph	Sodium Chloride	671
+Monograph	Sodium Citrate Dihydrate	675
+Monograph	Sodium Cyclamate	678
+Monograph	Sodium Hyaluronate	681
+Monograph	Sodium Hydroxide	683
+Monograph	Sodium Lactate	685
+Monograph	Sodium Lauryl Sulfate	687
+Monograph	Sodium Metabisulfite	690
+Monograph	Sodium Phosphate Dibasic	693
+Monograph	Sodium Phosphate Monobasic	696
+Monograph	Sodium Propionate	699
+Monograph	Sodium Starch Glycolate	701
+Monograph	Sodium Stearyl Fumarate	705
+Monograph	Sodium Sulfite	708
+Monograph	Sorbic Acid	710
+Monograph	Sorbitan Esters	713
+Monograph	Sorbitol	718
+Monograph	Soybean Oil	722
+Monograph	Starch	725
+Monograph	Starch Pregelatinized	731
+Monograph	Starch Sterilizable Maize	734
+Monograph	Stearic Acid	737
+Monograph	Stearyl Alcohol	740
+Monograph	Sucralose	742
+Monograph	Sucrose	744
+Monograph	Sugar Compressible	748
+Monograph	Sugar Confectioner's	750
+Monograph	Sugar Spheres	752
+Monograph	Sulfobutylether b-Cyclodextrin	754
+Monograph	Sulfuric Acid	758
+Monograph	Sunflower Oil	760
+Monograph	Suppository Bases Hard Fat	762
+Monograph	Talc	767
+Monograph	Tartaric Acid	770
+Monograph	Tetrafluoroethane (HFC)	772
+Monograph	Thaumatin	775
+Monograph	Thimerosal	777
+Monograph	Thymol	780
+Monograph	Titanium Dioxide	782
+Monograph	Tragacanth	785
+Monograph	Trehalose	788
+Monograph	Triacetin	790
+Monograph	Tributyl Citrate	792
+Monograph	Triethanolamine	794
+Monograph	Triethyl Citrate	796
+Monograph	Vanillin	798
+Monograph	Vegetable Oil Hydrogenated	800
+Monograph	Water	802
+Monograph	Wax Anionic Emulsifying	807
+Monograph	Wax Carnauba	809
+Monograph	Wax Cetyl Esters	811
+Monograph	Wax Microcrystalline	813
+Monograph	Wax Nonionic Emulsifying	815
+Monograph	Wax White	817
+Monograph	Wax Yellow	819
+Monograph	Xanthan Gum	821
+Monograph	Xylitol	824
+Monograph	Zein	828
+Monograph	Zinc Acetate	830
+Monograph	Zinc Stearate	832
+Appendix	Appendix I: Suppliers' Directory	835
+Appendix	Appendix II: List of Excipient 'E' Numbers	882
+Appendix	Appendix III: List of Excipient 'EINECS' Numbers	884
+Appendix	Appendix IV: List of Excipient Molecular Weights	886
+Index	Index	889

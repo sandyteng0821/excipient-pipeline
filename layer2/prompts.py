@@ -1,0 +1,149 @@
+"""
+layer2/prompts.py
+
+Prompt builder functions for each LLM extraction task.
+Imported by llm_enricher.py — no LLM logic here.
+
+To add a new prompt:
+    1. Define build_<task>_prompt(...)
+    2. Add field → section mapping to FIELD_SECTIONS
+    3. Import and call it from llm_enricher.py
+"""
+
+import json
+from layer2.schemas import ExcipientEnrichment
+
+
+# ── System prompt ─────────────────────────────────────────────────────────────
+
+SYSTEM_PROMPT = (
+    "You are a pharmaceutical science expert. "
+    "Extract structured data from excipient handbook text. "
+    "Return ONLY valid JSON — no explanation, no markdown fences."
+)
+
+
+# ── Field → Section mapping ───────────────────────────────────────────────────
+# Defines which handbook sections each field reads from.
+# Used both for context filtering (less noise) and for debug provenance.
+#
+# Key:   field name in ExcipientEnrichment
+# Value: list of section keywords to match (case-insensitive substring match)
+
+FIELD_SECTIONS: dict[str, list[str]] = {
+    "dosage_forms":     ["Applications", "Regulatory"],
+    "processing_notes": ["Applications"],
+    "ph_sensitivity":   ["Typical Properties", "Stability"],
+    "compatibilities":  ["Incompatibilities"],
+    "incompatibilities": ["Incompatibilities"],
+}
+
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _schema_descriptions(model_class) -> dict:
+    """Extract field descriptions from a Pydantic model as a plain dict."""
+    return {
+        field_name: field_info.description or ""
+        for field_name, field_info in model_class.model_fields.items()
+    }
+
+
+def _schema_defaults(model_class) -> dict:
+    """Extract default values from a Pydantic model for use as JSON template."""
+    return model_class().model_dump()
+
+
+def _filter_sections(sections: dict, keywords: list[str]) -> str:
+    """
+    Return handbook text for sections whose names match any of the keywords.
+    Each matched section is prefixed with its name for LLM context.
+
+    Args:
+        sections: Raw sections dict from Layer 1 (key = section name)
+        keywords: List of keywords to match against section names
+    """
+    matched = [
+        f"[{section_name}]\n{text}"
+        for keyword in keywords
+        for section_name, text in sections.items()
+        if keyword.lower() in section_name.lower()
+    ]
+    return "\n\n".join(matched) if matched else "(no relevant section found)"
+
+
+def get_field_context(field: str, sections: dict) -> str:
+    """
+    Public helper: return the filtered section text for a single field.
+    Useful for debugging — lets you see exactly what context the LLM received.
+
+    Usage:
+        from layer2.prompts import get_field_context
+        print(get_field_context("ph_sensitivity", clean_json["raw"]["sections"]))
+    """
+    keywords = FIELD_SECTIONS.get(field, [])
+    return _filter_sections(sections, keywords)
+
+
+# ── Prompt builders ───────────────────────────────────────────────────────────
+
+def build_enrichment_prompt(
+    excipient_name: str,
+    sections: dict,
+    l1_dosage_forms: list[str],
+    valid_dosage_forms: list[str],
+) -> str:
+    """
+    Build the prompt for ExcipientEnrichment extraction.
+
+    Each field only sees the handbook sections it needs (defined in FIELD_SECTIONS),
+    reducing noise and making it easier to debug why a field was extracted a certain way.
+
+    Args:
+        excipient_name:     Name of the excipient (e.g. "Acacia")
+        sections:           Raw handbook sections dict from Layer 1
+        l1_dosage_forms:    Dosage forms already extracted by Layer 1 (may have errors)
+        valid_dosage_forms: Allowed values from ontology.json
+    """
+    # Build per-field context blocks (each field only reads its own sections)
+    context_blocks = []
+    for field, keywords in FIELD_SECTIONS.items():
+        text = _filter_sections(sections, keywords)
+        context_blocks.append(
+            f"### Context for `{field}` (sections: {keywords})\n{text}"
+        )
+    context = "\n\n".join(context_blocks)
+
+    # Field descriptions from schema — single source of truth
+    schema_desc = _schema_descriptions(ExcipientEnrichment)
+
+    # Inject valid dosage_forms list into description at prompt-build time
+    schema_desc["dosage_forms"] = (
+        f"{schema_desc['dosage_forms']} "
+        f"Valid values: {valid_dosage_forms}"
+    )
+
+    # Empty output template so model knows the exact shape
+    output_template = json.dumps(_schema_defaults(ExcipientEnrichment), indent=2)
+
+    return f"""Excipient: {excipient_name}
+
+--- HANDBOOK TEXT (grouped by field) ---
+{context}
+
+--- LAYER 1 EXTRACTED (may have errors, use as reference only) ---
+dosage_forms: {l1_dosage_forms}
+
+--- TASK ---
+Return a JSON object with EXACTLY these keys and constraints:
+{json.dumps(schema_desc, indent=2)}
+
+RULES:
+- Each field has its own context block above — use only the relevant block
+- All list fields MUST be JSON arrays, never comma-separated strings
+- Numbers must be actual numbers, not strings
+- Use "" or [] if information is absent — do NOT invent data
+- Extract ALL numeric concentration ranges when present
+
+Output template (replace values, keep all keys):
+{output_template}"""
