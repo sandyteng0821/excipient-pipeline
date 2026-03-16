@@ -25,6 +25,7 @@ PDF → [ocr-docling-pdfparser] → raw JSON
 excipient_pipeline/
 ├── pipeline.py              # entry point (single file + batch)
 ├── batch_report.py          # batch runner + quality statistics
+├── report_all.py            # aggregate quality report across all clean JSONs
 ├── requirements.txt
 ├── config/
 │   ├── ontology.json        # roles / dosage form keyword mapping
@@ -37,13 +38,25 @@ excipient_pipeline/
 │   ├── prompts.py           # prompt builders (FIELD_SECTIONS mapping)
 │   └── llm_enricher.py      # swappable LLM provider (Groq / OpenAI / etc.)
 ├── tools/
-│   └── raw_status.py        # raw JSON coverage audit tool
+│   ├── raw_status.py        # raw JSON coverage audit tool
+│   └── query_drug.py        # demo tool for excipient json querying 
 └── data/
     ├── raw/                 # input: raw JSON from ocr-docling-pdfparser
     ├── clean/               # output: enriched clean JSON + quality report CSV
+    ├── clean-layer1-only/   # output generated from pipeline (layer 1) => input ussed for query_drug.py
     └── manual/
         └── raw_status_curated.tsv   # human-curated name corrections
 ```
+
+## Data Directories
+
+| Directory | Content | Source |
+|---|---|---|
+| `data/raw/` | Raw JSON from OCR pipeline | `ocr-docling-pdfparser` |
+| `data/clean/` | Enriched JSON (Layer 1 + Layer 2) | `batch_report.py --enrich` |
+| `data/clean-layer1-only/` | Rule-based extraction only (Layer 1) | `batch_report.py` (no `--enrich`) |
+
+`query_drug.py` prefers `data/clean/` (L1+L2), falls back to `data/clean-layer1-only/` (L1 only).
 
 ---
 

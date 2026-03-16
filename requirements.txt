@@ -3,6 +3,7 @@
 # Layer 2 — core
 langchain-core>=0.2.0
 python-dotenv>=1.0.0
+rapidfuzz>=3.0.0 # module for fuzzy matching 
 
 # Layer 2 — install ONE of these depending on your provider:
 langchain-huggingface   # HuggingFace (free)
