@@ -87,7 +87,14 @@ class ExcipientEnrichment(BaseModel):
             for item in v:
                 if isinstance(item, list):
                     result.extend([str(i) for i in item])
+                elif isinstance(item, dict):                        
+                    parts = []
+                    if "use" in item:
+                        parts.append(str(item["use"]))
+                    if "concentration" in item:
+                        parts.append(f"({item['concentration']})")
+                    result.append(" ".join(parts) if parts else ", ".join(str(x) for x in item.values()))
                 else:
-                    result.append(item)
+                    result.append(str(item))
             return result
         return v

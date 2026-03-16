@@ -30,6 +30,7 @@ Setup:
 import os
 import re
 import json
+import time
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -196,8 +197,16 @@ def enrich(clean_json: dict) -> dict:
     )
 
     # Call LLM and validate response
-    raw_response = _call_llm(prompt)
-    enriched: ExcipientEnrichment = _validate(_parse_response(raw_response))
+    for attempt in range(1, 4):
+        try:
+            raw_response = _call_llm(prompt)
+            enriched: ExcipientEnrichment = _validate(_parse_response(raw_response))
+            break
+        except (json.JSONDecodeError, ValueError) as e:
+            if attempt == 3:
+                raise
+            print(f"  [L2] Attempt {attempt} failed, retrying in {2**attempt}s...")
+            time.sleep(2 ** attempt)
 
     # Write back: always overwrite dosage_forms; only fill empty fields for others
     for field, value in enriched.model_dump().items():
