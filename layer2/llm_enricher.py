@@ -47,22 +47,27 @@ PROVIDER_CONFIGS = {
     "huggingface": {
         "model": "HuggingFaceH4/zephyr-7b-beta",
         "init":  lambda model: _init_hf(model),
+        "max_context_chars": 3000,  # 免費，保守截斷
     },
     "groq": {
         "model": "llama-3.3-70b-versatile",
         "init":  lambda model: _init_groq(model),
+        "max_context_chars": 3000,  # 免費，保守截斷
     },
     "ollama": {
         "model": "llama3.2",
         "init":  lambda model: _init_ollama(model),
+        "max_context_chars": 3000,  # 本地，視 GPU 而定
     },
     "openai": {
         "model": "gpt-4o-mini",
         "init":  lambda model: _init_openai(model),
+        "max_context_chars": None,  # 付費，不截斷
     },
     "anthropic": {
         "model": "claude-haiku-4-5-20251001",
         "init":  lambda model: _init_anthropic(model),
+        "max_context_chars": None,  # 付費，不截斷
     },
 }
 
@@ -194,6 +199,7 @@ def enrich(clean_json: dict) -> dict:
         sections=sections,
         l1_dosage_forms=extracted.get("dosage_forms", []),
         valid_dosage_forms=_VALID_DOSAGE_FORMS,
+        max_context_chars=PROVIDER_CONFIGS[PROVIDER]["max_context_chars"],
     )
 
     # Call LLM and validate response

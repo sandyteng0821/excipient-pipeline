@@ -54,7 +54,7 @@ def _schema_defaults(model_class) -> dict:
     return model_class().model_dump()
 
 
-def _filter_sections(sections: dict, keywords: list[str]) -> str:
+def _filter_sections(sections: dict, keywords: list[str], max_chars: int | None = None) -> str:
     """
     Return handbook text for sections whose names match any of the keywords.
     Each matched section is prefixed with its name for LLM context.
@@ -62,6 +62,8 @@ def _filter_sections(sections: dict, keywords: list[str]) -> str:
     Args:
         sections: Raw sections dict from Layer 1 (key = section name)
         keywords: List of keywords to match against section names
+        max_chars: If set, truncate combined context to this many characters.
+                   Use None (default) for no truncation (e.g. paid providers).
     """
     matched = [
         f"[{section_name}]\n{text}"
@@ -69,10 +71,14 @@ def _filter_sections(sections: dict, keywords: list[str]) -> str:
         for section_name, text in sections.items()
         if keyword.lower() in section_name.lower()
     ]
-    return "\n\n".join(matched) if matched else "(no relevant section found)"
+    full_context = "\n\n".join(matched) if matched else "(no relevant section found)"
+
+    if max_chars and len(full_context) > max_chars:
+        return full_context[:max_chars] + "\n...[truncated]"    
+    return full_context
 
 
-def get_field_context(field: str, sections: dict) -> str:
+def get_field_context(field: str, sections: dict, max_chars: int | None = None) -> str:
     """
     Public helper: return the filtered section text for a single field.
     Useful for debugging — lets you see exactly what context the LLM received.
@@ -82,7 +88,7 @@ def get_field_context(field: str, sections: dict) -> str:
         print(get_field_context("ph_sensitivity", clean_json["raw"]["sections"]))
     """
     keywords = FIELD_SECTIONS.get(field, [])
-    return _filter_sections(sections, keywords)
+    return _filter_sections(sections, keywords, max_chars=max_chars)
 
 
 # ── Prompt builders ───────────────────────────────────────────────────────────
@@ -92,6 +98,7 @@ def build_enrichment_prompt(
     sections: dict,
     l1_dosage_forms: list[str],
     valid_dosage_forms: list[str],
+    max_context_chars: int | None = None,
 ) -> str:
     """
     Build the prompt for ExcipientEnrichment extraction.
@@ -104,6 +111,7 @@ def build_enrichment_prompt(
         sections:           Raw handbook sections dict from Layer 1
         l1_dosage_forms:    Dosage forms already extracted by Layer 1 (may have errors)
         valid_dosage_forms: Allowed values from ontology.json
+        max_context_chars:  Per-field context char limit. None = no truncation (paid providers).
     """
     # Build per-field context blocks (each field only reads its own sections)
     context_blocks = []
