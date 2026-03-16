@@ -30,3 +30,4 @@ section_coverage.png
 .idea/
 *.swpdata/clean-layer1-only/
 data/clean-layer1-only/
+data/test_output/
