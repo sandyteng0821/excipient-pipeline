@@ -98,6 +98,7 @@ def build_enrichment_prompt(
     sections: dict,
     l1_dosage_forms: list[str],
     valid_dosage_forms: list[str],
+    target_fields: list[str] | None = None,
     max_context_chars: int | None = None,
 ) -> str:
     """
@@ -111,37 +112,54 @@ def build_enrichment_prompt(
         sections:           Raw handbook sections dict from Layer 1
         l1_dosage_forms:    Dosage forms already extracted by Layer 1 (may have errors)
         valid_dosage_forms: Allowed values from ontology.json
+        target_fields:      Target fields for text extraction
         max_context_chars:  Per-field context char limit. None = no truncation (paid providers).
     """
+    # Determine fields to extract
+    active_fields = target_fields if target_fields is not None else list(FIELD_SECTIONS.keys())
+
     # Build per-field context blocks (each field only reads its own sections)
     context_blocks = []
-    for field, keywords in FIELD_SECTIONS.items():
-        text = _filter_sections(sections, keywords)
+    for field in active_fields:
+        if field not in FIELD_SECTIONS:
+            continue
+        keywords = FIELD_SECTIONS[field]
+        text = _filter_sections(sections, keywords, max_chars=max_context_chars)
         context_blocks.append(
             f"### Context for `{field}` (sections: {keywords})\n{text}"
         )
-    context = "\n\n".join(context_blocks)
+    context = "\n\n".join(context_blocks) if context_blocks else "(no relevant sections)"
 
     # Field descriptions from schema — single source of truth
-    schema_desc = _schema_descriptions(ExcipientEnrichment)
+    all_schema_desc = _schema_descriptions(ExcipientEnrichment)
+    # Keep only description in active_fields
+    schema_desc = {f: all_schema_desc[f] for f in active_fields if f in all_schema_desc}
 
     # Inject valid dosage_forms list into description at prompt-build time
-    schema_desc["dosage_forms"] = (
-        f"{schema_desc['dosage_forms']} "
-        f"Valid values: {valid_dosage_forms}"
+    if "dosage_forms" in schema_desc:
+        schema_desc["dosage_forms"] = (
+            f"{schema_desc['dosage_forms']} "
+            f"Valid values: {valid_dosage_forms}"
+        )
+
+    # Empty output template so model knows the exact shape (only for active_fields)
+    all_defaults = _schema_defaults(ExcipientEnrichment)
+    output_template = json.dumps(
+        {f: all_defaults[f] for f in active_fields if f in all_defaults}, indent=2
     )
 
-    # Empty output template so model knows the exact shape
-    output_template = json.dumps(_schema_defaults(ExcipientEnrichment), indent=2)
+    # Layer 1 block
+    l1_block = (
+        f"\n--- LAYER 1 EXTRACTED (may have errors, use as reference only) ---\n"
+        f"dosage_forms: {l1_dosage_forms}\n"
+        if "dosage_forms" in active_fields else ""
+    )
 
     return f"""Excipient: {excipient_name}
 
 --- HANDBOOK TEXT (grouped by field) ---
 {context}
-
---- LAYER 1 EXTRACTED (may have errors, use as reference only) ---
-dosage_forms: {l1_dosage_forms}
-
+{l1_block}
 --- TASK ---
 Return a JSON object with EXACTLY these keys and constraints:
 {json.dumps(schema_desc, indent=2)}

@@ -194,29 +194,32 @@ def enrich(clean_json: dict) -> dict:
     provenance = clean_json["provenance"].copy()
 
     # Build prompt (section context is filtered per-field inside build_enrichment_prompt)
-    prompt = build_enrichment_prompt(
-        excipient_name=name,
-        sections=sections,
-        l1_dosage_forms=extracted.get("dosage_forms", []),
-        valid_dosage_forms=_VALID_DOSAGE_FORMS,
-        max_context_chars=PROVIDER_CONFIGS[PROVIDER]["max_context_chars"],
-    )
+    for field in FIELD_SECTIONS:
+        print(f"  [L2] Field: {field}")
+        
+        prompt = build_enrichment_prompt(
+            excipient_name=name,
+            sections=sections,
+            l1_dosage_forms=extracted.get("dosage_forms", []),
+            valid_dosage_forms=_VALID_DOSAGE_FORMS,
+            target_fields=[field],
+            max_context_chars=PROVIDER_CONFIGS[PROVIDER]["max_context_chars"],
+        )
 
-    # Call LLM and validate response
-    for attempt in range(1, 4):
-        try:
-            raw_response = _call_llm(prompt)
-            enriched: ExcipientEnrichment = _validate(_parse_response(raw_response))
-            break
-        except (json.JSONDecodeError, ValueError) as e:
-            if attempt == 3:
-                raise
-            print(f"  [L2] Attempt {attempt} failed, retrying in {2**attempt}s...")
-            time.sleep(2 ** attempt)
+        # Call LLM and validate response
+        for attempt in range(1, 4):
+            try:
+                raw_response = _call_llm(prompt)
+                enriched: ExcipientEnrichment = _validate(_parse_response(raw_response))
+                break
+            except (json.JSONDecodeError, ValueError) as e:
+                if attempt == 3:
+                    raise
+                print(f"  [L2] Attempt {attempt} failed, retrying in {2**attempt}s...")
+                time.sleep(2 ** attempt)
 
-    # Write back: always overwrite dosage_forms; only fill empty fields for others
-    for field, value in enriched.model_dump().items():
-        # if field == "dosage_forms" or not extracted.get(field): # deprecated
+        # Write back: target_fields
+        value = enriched.model_dump()[field]
         if field in ("dosage_forms", "incompatibilities") or not extracted.get(field):
             extracted[field]  = value
             provenance[field] = _build_provenance(field, provenance)
