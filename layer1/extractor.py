@@ -56,7 +56,7 @@ def get_synonyms(sections: dict) -> list[str]:
         return []
     # Synonyms are semicolon-delimited in the handbook
     parts = [p.strip().rstrip(".") for p in text.split(";")]
-    return [p for p in parts if p]
+    return [p for p in parts if p and p != "-"]
 
 
 def get_description(sections: dict) -> str:
@@ -194,7 +194,7 @@ def extract(normalized: dict) -> tuple[dict, dict]:
         "description":             {"section": "8_Description",                    "method": "rule"},
         "roles":                   {"section": "6_Functional + 7_Applications",    "method": "rule"},
         "dosage_forms":            {"section": "7_Applications + 16_Regulatory",   "method": "llm"},
-        "incompatibilities":       {"section": "12_Incompatibilities",             "method": "rule"},
+        "incompatibilities":       {"section": "12_Incompatibilities",             "method": "llm"},
         "compatibilities":         {"section": "12_Incompatibilities",             "method": "llm"},
         "stability_notes":         {"section": "11_Stability",                     "method": "rule"},
         "ph_sensitivity":          {"section": "11_Stability / 10_Properties",     "method": "llm"},
