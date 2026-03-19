@@ -23,8 +23,10 @@ class ExcipientEnrichment(BaseModel):
         default_factory=list,
         description=(
             "Dosage forms this excipient is used in. "
+            "Map textual descriptions to valid values "
+            "(e.g. 'parenteral' -> 'injection', 'topical' -> 'cream', 'oral' -> 'tablet'/'solution'). "
+            "Include all forms explicitly mentioned or strongly implied. "
             "Use only values from the provided valid list. "
-            "Include all forms mentioned (e.g. tablet, solution, suspension)."
         ),
     )
 
@@ -50,19 +52,19 @@ class ExcipientEnrichment(BaseModel):
     incompatibilities: list[str] = Field(
         default_factory=list,
         description=(
-            "Specific substance or chemical names incompatible with this excipient. "
-            "Extract only names (e.g. 'ethanol', 'ferric salts', 'tannins'). "
-            "Exclude generic phrases like 'a number of substances' or any text "
-            "that is not a specific substance name."
+            "List specific chemical names OR functional classes incompatible with this excipient "
+            "(e.g. 'reducing sugars', 'heavy metals', 'oxidizing agents', 'ethanol'). "
+            "Exclude generic filler text like 'a number of substances'. "
+            "Keep meaningful chemical groups even if not a single substance name."
         ),
     )
 
     compatibilities: list[str] = Field(
         default_factory=list,
         description=(
-            "Explicitly confirmed compatible substances or excipients. "
-            "Do NOT infer — only include if the text directly states compatibility. "
-            "Usually []."
+            "Substances, solvents, or plasticizers explicitly mentioned as being used "
+            "together or miscible with this excipient (e.g. 'sucrose', 'glycerin', 'water'). "
+            "Do NOT infer — only include if the text directly states compatibility or miscibility."
         ),
     )
 
