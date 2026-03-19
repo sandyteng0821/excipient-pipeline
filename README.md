@@ -39,7 +39,11 @@ excipient_pipeline/
 │   └── llm_enricher.py      # swappable LLM provider (Groq / OpenAI / etc.)
 ├── tools/
 │   ├── raw_status.py        # raw JSON coverage audit tool
-│   └── query_drug.py        # demo tool for excipient json querying 
+│   ├── analyze_ontology_coverage.py  # ontology gap analysis
+│   └── query_drug.py        # demo tool for excipient json querying
+├── utils/
+│   ├── dailymed_utils.py    # DailyMed formulation fetcher
+│   └── pubchem_utils.py     # PubChem physicochemical property fetcher
 └── data/
     ├── raw/                 # input: raw JSON from ocr-docling-pdfparser
     ├── clean/               # output: enriched clean JSON + quality report CSV
@@ -233,6 +237,27 @@ SeeTableI       Aliphatic Polyesters
 ```
 
 Re-running `raw_status.py` will automatically merge corrections and infer page/category from contents.
+
+### `utils/dailymed_utils.py` — DailyMed Formulation Fetcher
+
+Fetches active/inactive ingredients from DailyMed SPL XML by drug name.
+```bash
+# Single SPL (first result)
+python3 utils/dailymed_utils.py aspirin
+
+# Fetch N SPLs (multiple manufacturers)
+python3 utils/dailymed_utils.py aspirin --sampled 5
+```
+
+### `utils/pubchem_utils.py` — PubChem Property Fetcher
+
+Fetches physicochemical properties (SMILES, MW, XLogP, TPSA, HBD/HBA) by compound name or CAS number.
+```bash
+python3 utils/pubchem_utils.py aspirin
+python3 utils/pubchem_utils.py 50-78-2 --input-type cas
+```
+
+> **Note:** Polymers and mixtures (e.g. MCC, HPMC, Povidone) have no single CID in PubChem and will return `NOT FOUND`.
 
 ---
 
