@@ -31,11 +31,11 @@ SYSTEM_PROMPT = (
 # Value: list of section keywords to match (case-insensitive substring match)
 
 FIELD_SECTIONS: dict[str, list[str]] = {
-    "dosage_forms":     ["Applications", "Regulatory"],
-    "processing_notes": ["Applications"],
+    "dosage_forms":     ["Functional Category", "Applications", "Regulatory"],
+    "processing_notes": ["Applications", "Method of Manufacture"],
     "ph_sensitivity":   ["Typical Properties", "Stability"],
-    "compatibilities":  ["Incompatibilities"],
-    "incompatibilities": ["Incompatibilities"],
+    "compatibilities":  ["Incompatibilities", "Stability"],
+    "incompatibilities": ["Incompatibilities", "Applications", "Typical Properties"],
 }
 
 
